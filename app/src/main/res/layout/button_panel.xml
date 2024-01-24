@@ -12,33 +12,33 @@
 
     <!-- Row 1 -->
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/buttonClear"
         style="@style/RoundedButton"
-        android:text="C"
+        android:text="@string/button_clear"
         app:cornerRadius="40dp"
         android:layout_width="80dp"
         android:layout_height="80dp"/>
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/buttonBrackets"
         style="@style/RoundedButton"
-        android:text="C"
+        android:text="@string/button_brackets"
         app:cornerRadius="40dp"
         android:layout_width="80dp"
         android:layout_height="80dp"/>
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/buttonPercent"
         style="@style/RoundedButton"
-        android:text="C"
+        android:text="@string/button_percent"
         app:cornerRadius="40dp"
         android:layout_width="80dp"
         android:layout_height="80dp"/>
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/buttonDivide"
         style="@style/RoundedButton"
-        android:text="C"
+        android:text="@string/button_divide"
         app:cornerRadius="40dp"
         android:layout_width="80dp"
         android:layout_height="80dp"/>

@@ -1,29 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
     android:orientation="vertical"
-    android:gravity="center|center_horizontal|center_vertical">
+    android:layout_gravity="center_vertical|center_horizontal|center">
 
-    <EditText
-        android:id="@+id/editTextMathExpression"
-        android:layout_width="match_parent"
-        android:layout_height="250dp"
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/mathExpressionPanel"
+        android:name="com.example.calculatorapp.ui.MathExpressionFragment"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_weight="0.4"
-        android:textSize="30sp"/>
+        app:layout_constraintBottom_toTopOf="@+id/buttonPanel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-
-    <include
+    <androidx.fragment.app.FragmentContainerView
         android:id="@+id/buttonPanel"
-        android:layout_width="match_parent"
+        android:name="com.example.calculatorapp.ui.ButtonFragment"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:layout_gravity="bottom"
         android:layout_weight="0.6"
-        layout="@layout/test_layout"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

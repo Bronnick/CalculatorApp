@@ -32,7 +32,10 @@ class ButtonFragment : Fragment(R.layout.button_panel){
         binding?.root?.children?.let {
             it.forEach { view ->
                 view.setOnClickListener { currentView ->
-                    viewModel.updateMathExpression((currentView as Button).text.toString())
+                    when (currentView.id) {
+                        R.id.buttonClear -> viewModel.removeLastSymbol()
+                        else -> viewModel.updateMathExpression((currentView as Button).text.toString())
+                    }
                 }
             }
         }

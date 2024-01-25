@@ -45,25 +45,9 @@
 
     <!-- Row 2 -->
     <Button
-        android:id="@+id/button5"
-        style="@style/RoundedButton"
-        android:text="C"
-        app:cornerRadius="40dp"
-        android:layout_width="80dp"
-        android:layout_height="80dp"/>
-
-    <Button
-        android:id="@+id/button6"
-        style="@style/RoundedButton"
-        android:text="C"
-        app:cornerRadius="40dp"
-        android:layout_width="80dp"
-        android:layout_height="80dp"/>
-
-    <Button
         android:id="@+id/button7"
         style="@style/RoundedButton"
-        android:text="C"
+        android:text="@string/button_7"
         app:cornerRadius="40dp"
         android:layout_width="80dp"
         android:layout_height="80dp"/>
@@ -71,106 +55,122 @@
     <Button
         android:id="@+id/button8"
         style="@style/RoundedButton"
-        android:text="C"
+        android:text="@string/button_8"
+        app:cornerRadius="40dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"/>
+
+    <Button
+        android:id="@+id/button9"
+        style="@style/RoundedButton"
+        android:text="@string/button_9"
+        app:cornerRadius="40dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"/>
+
+    <Button
+        android:id="@+id/buttonMultiply"
+        style="@style/RoundedButton"
+        android:text="@string/button_multiply"
         app:cornerRadius="40dp"
         android:layout_width="80dp"
         android:layout_height="80dp"/>
 
     <!-- Row 3 -->
     <Button
-        android:id="@+id/button9"
+        android:id="@+id/button4"
         style="@style/RoundedButton"
-        android:text="C"
+        android:text="@string/button_4"
         app:cornerRadius="40dp"
         android:layout_width="80dp"
         android:layout_height="80dp"/>
 
     <Button
-        android:id="@+id/button10"
+        android:id="@+id/button5"
         style="@style/RoundedButton"
-        android:text="C"
+        android:text="@string/button_5"
         app:cornerRadius="40dp"
         android:layout_width="80dp"
         android:layout_height="80dp"/>
 
     <Button
-        android:id="@+id/button11"
+        android:id="@+id/button6"
         style="@style/RoundedButton"
-        android:text="C"
+        android:text="@string/button_6"
         app:cornerRadius="40dp"
         android:layout_width="80dp"
         android:layout_height="80dp"/>
 
     <Button
-        android:id="@+id/button12"
+        android:id="@+id/buttonSubtract"
         style="@style/RoundedButton"
-        android:text="C"
+        android:text="@string/button_subtract"
         app:cornerRadius="40dp"
         android:layout_width="80dp"
         android:layout_height="80dp"/>
 
     <!-- Row 4 -->
     <Button
-        android:id="@+id/button13"
+        android:id="@+id/button1"
         style="@style/RoundedButton"
-        android:text="C"
+        android:text="@string/button_1"
         app:cornerRadius="40dp"
         android:layout_width="80dp"
         android:layout_height="80dp"/>
 
     <Button
-        android:id="@+id/button14"
+        android:id="@+id/button2"
         style="@style/RoundedButton"
-        android:text="C"
+        android:text="@string/button_2"
         app:cornerRadius="40dp"
         android:layout_width="80dp"
         android:layout_height="80dp"/>
 
     <Button
-        android:id="@+id/button15"
+        android:id="@+id/button3"
         style="@style/RoundedButton"
-        android:text="C"
+        android:text="@string/button_3"
         app:cornerRadius="40dp"
         android:layout_width="80dp"
         android:layout_height="80dp"/>
 
     <Button
-        android:id="@+id/button16"
+        android:id="@+id/buttonAdd"
         style="@style/RoundedButton"
-        android:text="C"
+        android:text="@string/button_add"
         app:cornerRadius="40dp"
         android:layout_width="80dp"
         android:layout_height="80dp"/>
 
     <!-- Row 5 -->
     <Button
-        android:id="@+id/button17"
+        android:id="@+id/buttonInverse"
         style="@style/RoundedButton"
-        android:text="C"
+        android:text="@string/button_inverse"
         app:cornerRadius="40dp"
         android:layout_width="80dp"
         android:layout_height="80dp"/>
 
     <Button
-        android:id="@+id/button18"
+        android:id="@+id/button0"
         style="@style/RoundedButton"
-        android:text="C"
+        android:text="@string/button_0"
         app:cornerRadius="40dp"
         android:layout_width="80dp"
         android:layout_height="80dp"/>
 
     <Button
-        android:id="@+id/button19"
+        android:id="@+id/buttonComa"
         style="@style/RoundedButton"
-        android:text="C"
+        android:text="@string/button_coma"
         app:cornerRadius="40dp"
         android:layout_width="80dp"
         android:layout_height="80dp"/>
 
     <Button
-        android:id="@+id/button20"
+        android:id="@+id/buttonEquals"
         style="@style/RoundedButton"
-        android:text="C"
+        android:text="@string/button_equals"
         app:cornerRadius="40dp"
         android:layout_width="80dp"
         android:layout_height="80dp"/>

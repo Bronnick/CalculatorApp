@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="RoundedButton">
+    <!--<style name="RoundedButton">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_weight">1</item>
@@ -8,10 +8,10 @@
         <item name="android:layout_marginStart">4dp</item>
         <item name="android:layout_marginBottom">4dp</item>
         <item name="android:layout_marginTop">4dp</item>
-        <!--<item name="android:layout_rowWeight">0.2</item>-->
+        &lt;!&ndash;<item name="android:layout_rowWeight">0.2</item>&ndash;&gt;
         <item name="android:background">@drawable/rounded_button_background</item>
-        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textColor">@color/black</item>
         <item name="android:textSize">30sp</item>
         <item name="android:gravity">center</item>
-    </style>
+    </style>-->
 </resources>

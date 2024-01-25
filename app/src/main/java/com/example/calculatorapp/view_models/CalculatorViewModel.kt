@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.calculatorapp.classes.evaluate
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -32,6 +33,10 @@ class CalculatorViewModel @Inject constructor(): ViewModel() {
 
     fun updateMathExpressionPreviousLength() {
         mathExpressionPreviousLength = _mathExpression.value?.length ?: 0
+    }
+
+    fun evaluateExpression(s: String): Double {
+        return evaluate(s)
     }
 
 }

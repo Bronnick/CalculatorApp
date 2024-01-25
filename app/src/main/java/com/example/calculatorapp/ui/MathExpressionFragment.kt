@@ -2,6 +2,7 @@ package com.example.calculatorapp.ui
 
 import android.animation.ObjectAnimator
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -35,9 +36,19 @@ class MathExpressionFragment : Fragment(R.layout.text_panel) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.mathExpression.observe(activity as LifecycleOwner) {
             val editTextMathExpression = binding?.editTextMathExpression
+            val editTextResult = binding?.editTextResult
             val length = it.length
             val mathExpressionPreviousLength = viewModel.mathExpressionPreviousLength
             editTextMathExpression?.setText(it)
+            editTextResult?.setText(
+                try {
+                    Log.d("myLogs", viewModel.evaluateExpression(it).toString())
+                    viewModel.evaluateExpression(it).toString()
+                } catch (e: Exception) {
+                    Log.d("myLogs", e.message ?: "")
+                    ""
+                }
+            )
             val animation = when {
                 mathExpressionPreviousLength == 13 && length == 14 ->
                     ObjectAnimator.ofFloat(editTextMathExpression, "textSize", 50f, 30f)

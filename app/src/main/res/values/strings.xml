@@ -7,7 +7,7 @@
     <string name="button_7">7</string>
     <string name="button_8">8</string>
     <string name="button_9">9</string>
-    <string name="button_multiply">╳</string>
+    <string name="button_multiply">×</string>
     <string name="button_4">4</string>
     <string name="button_5">5</string>
     <string name="button_6">6</string>
@@ -18,6 +18,6 @@
     <string name="button_add">+</string>
     <string name="button_inverse">+-</string>
     <string name="button_0">0</string>
-    <string name="button_coma">,</string>
+    <string name="button_coma">.</string>
     <string name="button_equals">=</string>
 </resources>

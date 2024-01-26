@@ -22,7 +22,7 @@ class MathExpressionFragment : Fragment(R.layout.text_panel) {
     private var binding: TextPanelBinding? = null
 
     private val viewModel: CalculatorViewModel by activityViewModels()
-
+    
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -34,21 +34,17 @@ class MathExpressionFragment : Fragment(R.layout.text_panel) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        //val backspaceButton = binding?.
         viewModel.mathExpression.observe(activity as LifecycleOwner) {
             val editTextMathExpression = binding?.editTextMathExpression
-            val editTextResult = binding?.editTextResult
+
             val length = it.length
             val mathExpressionPreviousLength = viewModel.mathExpressionPreviousLength
             editTextMathExpression?.setText(it)
-            editTextResult?.setText(
-                try {
-                    Log.d("myLogs", viewModel.evaluateExpression(it).toString())
-                    viewModel.evaluateExpression(it).toString()
-                } catch (e: Exception) {
-                    Log.d("myLogs", e.message ?: "")
-                    ""
-                }
-            )
+
+            viewModel.evaluateExpression(it)
+
             val animation = when {
                 mathExpressionPreviousLength == 13 && length == 14 ->
                     ObjectAnimator.ofFloat(editTextMathExpression, "textSize", 50f, 30f)
@@ -62,15 +58,25 @@ class MathExpressionFragment : Fragment(R.layout.text_panel) {
                     ObjectAnimator.ofFloat(editTextMathExpression, "textSize", 15f, 20f)
                 mathExpressionPreviousLength == 14 && length == mathExpressionPreviousLength - 1 ->
                     ObjectAnimator.ofFloat(editTextMathExpression, "textSize", 30f, 50f)
+                length == 0 ->
+                    ObjectAnimator.ofFloat(editTextMathExpression, "textSize", 30f, 50f)
                 else -> {
                     viewModel.updateMathExpressionPreviousLength()
                     return@observe
                 }
             }
-            animation.duration = 300L
+            animation.duration = 100L
             animation.interpolator = AccelerateInterpolator()
             animation.start()
             viewModel.updateMathExpressionPreviousLength()
+        }
+
+        viewModel.result.observe(activity as LifecycleOwner) {
+            binding?.editTextResult?.setText(it)
+        }
+
+        binding?.backspaceButton?.setOnClickListener {
+            viewModel.removeLastSymbol()
         }
     }
 }

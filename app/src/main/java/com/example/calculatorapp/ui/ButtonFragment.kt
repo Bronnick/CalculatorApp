@@ -33,7 +33,8 @@ class ButtonFragment : Fragment(R.layout.button_panel){
             it.forEach { view ->
                 view.setOnClickListener { currentView ->
                     when (currentView.id) {
-                        R.id.buttonClear -> viewModel.removeLastSymbol()
+                        R.id.buttonClear -> viewModel.clear()
+                        R.id.buttonEquals -> viewModel.switchMathExpressionWithResult()
                         else -> viewModel.updateMathExpression((currentView as Button).text.toString())
                     }
                 }

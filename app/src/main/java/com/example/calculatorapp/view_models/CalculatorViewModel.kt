@@ -16,6 +16,10 @@ class CalculatorViewModel @Inject constructor(): ViewModel() {
     val mathExpression: LiveData<String>
         get() = _mathExpression
 
+    private val _result = MutableLiveData("")
+    val result: LiveData<String>
+        get() = _result
+
     var mathExpressionPreviousLength = 0
 
     init {
@@ -31,12 +35,26 @@ class CalculatorViewModel @Inject constructor(): ViewModel() {
         _mathExpression.value = _mathExpression.value?.dropLast(1)
     }
 
+    fun clear() {
+        _mathExpression.value = ""
+    }
+
+    fun switchMathExpressionWithResult() {
+        _mathExpression.value = _result.value
+        _result.value = ""
+    }
+
     fun updateMathExpressionPreviousLength() {
         mathExpressionPreviousLength = _mathExpression.value?.length ?: 0
     }
 
-    fun evaluateExpression(s: String): Double {
-        return evaluate(s)
+    fun evaluateExpression(s: String) {
+        _result.value =
+            try {
+                evaluate(s).toString()
+            } catch(e: Exception) {
+                ""
+            }
     }
 
 }

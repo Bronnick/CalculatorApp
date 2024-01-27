@@ -1,13 +1,12 @@
 package com.example.calculatorapp.ui
 
+import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AccelerateInterpolator
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.LifecycleOwner
@@ -73,6 +72,22 @@ class MathExpressionFragment : Fragment(R.layout.text_panel) {
 
         viewModel.result.observe(activity as LifecycleOwner) {
             binding?.editTextResult?.setText(it)
+        }
+
+        viewModel.equalsPressedFlag.observe(activity as LifecycleOwner) {
+            val editTextMathExpression = binding?.editTextMathExpression
+
+            val translationAnimation = ObjectAnimator.ofFloat(editTextMathExpression, "translationY", 300f, 0f)
+
+            val px = editTextMathExpression?.textSize
+            val sp = (px ?: 1.0f) / resources.displayMetrics.scaledDensity
+            val scaleAnimation = ObjectAnimator.ofFloat(editTextMathExpression, "textSize", 20f, sp)
+
+            val animSet = AnimatorSet()
+            animSet.play(translationAnimation).with(scaleAnimation)
+            animSet.duration = 200L
+            animSet.interpolator = AccelerateInterpolator()
+            animSet.start()
         }
 
         binding?.backspaceButton?.setOnClickListener {

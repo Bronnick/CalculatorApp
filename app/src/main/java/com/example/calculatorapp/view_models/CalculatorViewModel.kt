@@ -20,6 +20,10 @@ class CalculatorViewModel @Inject constructor(): ViewModel() {
     val result: LiveData<String>
         get() = _result
 
+    private val _equalsPressedFlag = MutableLiveData(false)
+    val equalsPressedFlag: LiveData<Boolean>
+        get() = _equalsPressedFlag
+
     var mathExpressionPreviousLength = 0
 
     init {
@@ -42,6 +46,7 @@ class CalculatorViewModel @Inject constructor(): ViewModel() {
     fun switchMathExpressionWithResult() {
         _mathExpression.value = _result.value
         _result.value = ""
+        _equalsPressedFlag.value = !_equalsPressedFlag.value!!
     }
 
     fun updateMathExpressionPreviousLength() {

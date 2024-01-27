@@ -10,7 +10,7 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/mathExpressionPanel"
-        android:name="com.example.calculatorapp.ui.MathExpressionFragment"
+        android:name="com.example.calculatorapp.ui.fragments.MathExpressionFragment"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_weight="0.4"
@@ -21,14 +21,16 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/buttonPanel"
-        android:name="com.example.calculatorapp.ui.ButtonFragment"
+        android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="450dp"
         android:layout_gravity="bottom"
         android:layout_weight="0.6"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/calculator_graph"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

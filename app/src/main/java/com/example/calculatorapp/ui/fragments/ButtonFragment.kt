@@ -1,4 +1,4 @@
-package com.example.calculatorapp.ui
+package com.example.calculatorapp.ui.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,6 +9,7 @@ import androidx.core.view.children
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.calculatorapp.R
+import com.example.calculatorapp.database.entities.HistoryItem
 import com.example.calculatorapp.databinding.ButtonPanelBinding
 import com.example.calculatorapp.view_models.CalculatorViewModel
 
@@ -34,7 +35,15 @@ class ButtonFragment : Fragment(R.layout.button_panel){
                 view.setOnClickListener { currentView ->
                     when (currentView.id) {
                         R.id.buttonClear -> viewModel.clear()
-                        R.id.buttonEquals -> viewModel.switchMathExpressionWithResult()
+                        R.id.buttonEquals -> {
+                            viewModel.saveHistoryItem(
+                                HistoryItem(
+                                    mathExpression = viewModel.mathExpression.value.toString(),
+                                    result = viewModel.result.value.toString()
+                                )
+                            )
+                            viewModel.switchMathExpressionWithResult()
+                        }
                         else -> viewModel.updateMathExpression((currentView as Button).text.toString())
                     }
                 }

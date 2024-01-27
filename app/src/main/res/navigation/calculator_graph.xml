@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/calculator_graph"
+    app:startDestination="@id/buttonFragment">
+    <fragment
+        android:id="@+id/buttonFragment"
+        android:name="com.example.calculatorapp.ui.fragments.ButtonFragment"
+        android:label="ButtonFragment"
+        tools:layout="@layout/button_panel">
+        <action
+            android:id="@+id/action_buttonFragment_to_historyFragment"
+            app:destination="@id/historyFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/historyFragment"
+        android:name="com.example.calculatorapp.ui.fragments.HistoryFragment"
+        android:label="HistoryFragment" />
+</navigation>

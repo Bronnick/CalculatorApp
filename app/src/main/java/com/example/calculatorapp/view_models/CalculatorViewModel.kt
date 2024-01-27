@@ -5,12 +5,19 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.calculatorapp.classes.evaluate
+import com.example.calculatorapp.database.entities.HistoryItem
+import com.example.calculatorapp.repositories.HistoryRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class CalculatorViewModel @Inject constructor(): ViewModel() {
+class CalculatorViewModel @Inject constructor(
+    private val historyRepository: HistoryRepository
+): ViewModel() {
 
     private val _mathExpression = MutableLiveData("")
     val mathExpression: LiveData<String>
@@ -25,6 +32,11 @@ class CalculatorViewModel @Inject constructor(): ViewModel() {
         get() = _equalsPressedFlag
 
     var mathExpressionPreviousLength = 0
+
+
+    val history: Flow<List<HistoryItem>> =
+        historyRepository.getHistory()
+
 
     init {
         Log.d("myLogs", "init")
@@ -41,6 +53,12 @@ class CalculatorViewModel @Inject constructor(): ViewModel() {
 
     fun clear() {
         _mathExpression.value = ""
+    }
+
+    fun saveHistoryItem(item: HistoryItem) {
+        viewModelScope.launch {
+            historyRepository.insertHistoryItem(item)
+        }
     }
 
     fun switchMathExpressionWithResult() {

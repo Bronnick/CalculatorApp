@@ -1,4 +1,4 @@
-package com.example.calculatorapp.ui
+package com.example.calculatorapp.ui.fragments
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
@@ -10,6 +10,7 @@ import android.view.animation.AccelerateInterpolator
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.LifecycleOwner
+import androidx.navigation.fragment.findNavController
 import com.example.calculatorapp.R
 import com.example.calculatorapp.databinding.TextPanelBinding
 import com.example.calculatorapp.view_models.CalculatorViewModel
@@ -98,6 +99,14 @@ class MathExpressionFragment : Fragment(R.layout.text_panel) {
 
         binding?.backspaceButton?.setOnClickListener {
             viewModel.removeLastSymbol()
+        }
+
+        binding?.historyButton?.setOnClickListener {
+            if(findNavController().currentDestination?.id == R.id.buttonFragment) {
+                findNavController().navigate(R.id.action_buttonFragment_to_historyFragment)
+            } else {
+                findNavController().popBackStack()
+            }
         }
 
         binding?.editTextMathExpression?.showSoftInputOnFocus = false

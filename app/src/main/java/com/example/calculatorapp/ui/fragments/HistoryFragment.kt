@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.example.calculatorapp.R
 import com.example.calculatorapp.database.entities.HistoryItem
 import com.example.calculatorapp.databinding.HistoryFragmentBinding
@@ -42,7 +43,10 @@ class HistoryFragment : Fragment(R.layout.history_fragment) {
     }
 
     private fun initView() {
-        adapter = HistoryAdapter(history)
+        adapter = HistoryAdapter(history) { exp ->
+            viewModel.setMathExpression(exp)
+            findNavController().popBackStack()
+        }
         binding?.rvHistory?.adapter = adapter
     }
 
@@ -53,7 +57,10 @@ class HistoryFragment : Fragment(R.layout.history_fragment) {
                 history.forEach {
                     Log.d("myLogs", it.toString())
                 }
-                adapter = HistoryAdapter(history)
+                adapter = HistoryAdapter(history) { exp ->
+                    viewModel.setMathExpression(exp)
+                    findNavController().popBackStack()
+                }
                 binding?.rvHistory?.adapter = adapter
                 Log.d("myLogs", "end of collectLatest")
                 //binding?.test?.text = "TEXT CHNAGED"

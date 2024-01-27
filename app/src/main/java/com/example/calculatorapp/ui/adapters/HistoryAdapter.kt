@@ -8,7 +8,8 @@ import com.example.calculatorapp.database.entities.HistoryItem
 import com.example.calculatorapp.databinding.HistoryItemBinding
 
 class HistoryAdapter(
-    private val history: List<HistoryItem>
+    private val history: List<HistoryItem>,
+    private val onItemClick: (String) -> Unit
 ) : RecyclerView.Adapter<HistoryViewHolder>() {
 
     override fun getItemCount(): Int {
@@ -27,6 +28,9 @@ class HistoryAdapter(
 
         holder.mathExpression.text = historyItem.mathExpression
         holder.result.text = "=${historyItem.result}"
+        holder.itemView.setOnClickListener {
+            onItemClick(holder.result.text.toString().drop(1))
+        }
         Log.d("myLogs", "onBindViewHolder: ${holder.mathExpression.text}")
     }
 }

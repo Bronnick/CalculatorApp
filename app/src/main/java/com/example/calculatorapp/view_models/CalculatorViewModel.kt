@@ -42,6 +42,10 @@ class CalculatorViewModel @Inject constructor(
         Log.d("myLogs", "init")
     }
 
+    fun setMathExpression(s: String) {
+        _mathExpression.value = s
+    }
+
     fun updateMathExpression(s: String) {
         _mathExpression.value += s
         Log.d("myLogs", "beforeSize: $mathExpressionPreviousLength")

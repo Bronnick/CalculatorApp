@@ -54,14 +54,18 @@
 
         </ImageView>
 
-        <ImageView
-            android:id="@+id/backspaceButton"
-            android:src="@drawable/delete"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_gravity="end">
+            android:layout_height="30dp">
+            <ImageView
+                android:id="@+id/backspaceButton"
+                android:src="@drawable/delete"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="end">
 
-        </ImageView>
+            </ImageView>
+        </FrameLayout>
 
     </LinearLayout>
 

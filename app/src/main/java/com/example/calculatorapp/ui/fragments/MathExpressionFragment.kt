@@ -38,13 +38,15 @@ class MathExpressionFragment : Fragment(R.layout.text_panel) {
 
         viewModel.equalsPressedFlag.observe(activity as LifecycleOwner) {
             val editTextMathExpression = binding?.editTextMathExpression
+            val editTextResult = binding?.editTextResult
 
             val translationAnimation = ObjectAnimator.ofFloat(editTextMathExpression, "translationY", 300f, 0f)
 
             val px = editTextMathExpression?.textSize
             val sp = (px ?: 1.0f) / resources.displayMetrics.scaledDensity
+            val initialValue = (editTextResult?.textSize ?: 1.0f) / resources.displayMetrics.scaledDensity
             val textResizeAnimation = getTextResizeAnimation(editTextMathExpression,
-                try { editTextMathExpression?.text?.toString()?.length!! } catch(e:Exception) {0}, sp)
+                try { editTextMathExpression?.text?.toString()?.length!! } catch(e:Exception) {0}, sp, initialValue)
 
             val animSet = AnimatorSet()
             animSet.play(translationAnimation).with(textResizeAnimation)
@@ -55,6 +57,7 @@ class MathExpressionFragment : Fragment(R.layout.text_panel) {
 
         viewModel.mathExpression.observe(activity as LifecycleOwner) {
             val editTextMathExpression = binding?.editTextMathExpression
+            val editTextResult = binding?.editTextResult
 
             val length = it.length
 
@@ -65,7 +68,9 @@ class MathExpressionFragment : Fragment(R.layout.text_panel) {
             val px = editTextMathExpression?.textSize
             val sp = (px ?: 1.0f) / resources.displayMetrics.scaledDensity
 
-            val animation = getTextResizeAnimation(editTextMathExpression, length, sp)
+            val initialValue = (editTextMathExpression?.textSize ?: 1.0f) / resources.displayMetrics.scaledDensity
+
+            val animation = getTextResizeAnimation(editTextMathExpression, length, sp, initialValue)
 
             animation.duration = 100L
             animation.interpolator = AccelerateInterpolator()

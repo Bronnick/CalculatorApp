@@ -29,4 +29,8 @@
         <item name="android:textSize">30sp</item>
         <item name="android:gravity">center</item>
     </style>
+
+    <style name="bottom_element">
+        <item name="android:background">@drawable/bottom_border_light</item>
+    </style>
 </resources>

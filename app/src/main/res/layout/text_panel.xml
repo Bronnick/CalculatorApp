@@ -29,6 +29,7 @@
         android:textAlignment="textEnd"
         android:enabled="false"
         android:textSize="20sp"
+        android:background="@null"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -37,9 +38,11 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <LinearLayout
+        style="@style/bottom_element"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:padding="16dp"
         android:gravity="end">
 
         <ImageView

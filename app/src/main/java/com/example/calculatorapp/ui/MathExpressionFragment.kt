@@ -34,6 +34,28 @@ class MathExpressionFragment : Fragment(R.layout.text_panel) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        viewModel.equalsPressedFlag.observe(activity as LifecycleOwner) {
+            val editTextMathExpression = binding?.editTextMathExpression
+
+            val translationAnimation = ObjectAnimator.ofFloat(editTextMathExpression, "translationY", 300f, 0f)
+            /* translationAnimation.duration = 200L
+             translationAnimation.interpolator = AccelerateInterpolator()
+             translationAnimation.start()*/
+
+            val px = editTextMathExpression?.textSize
+            val sp = (px ?: 1.0f) / resources.displayMetrics.scaledDensity
+            val scaleAnimation = ObjectAnimator.ofFloat(editTextMathExpression, "textSize", 20f, sp)
+            /*scaleAnimation.duration = 200L
+            scaleAnimation.interpolator = AccelerateInterpolator()
+            scaleAnimation.start()*/
+
+            val animSet = AnimatorSet()
+            animSet.play(translationAnimation).with(scaleAnimation)
+            animSet.duration = 200L
+            animSet.interpolator = AccelerateInterpolator()
+            animSet.start()
+        }
+
         //val backspaceButton = binding?.
         viewModel.mathExpression.observe(activity as LifecycleOwner) {
             val editTextMathExpression = binding?.editTextMathExpression
@@ -74,24 +96,10 @@ class MathExpressionFragment : Fragment(R.layout.text_panel) {
             binding?.editTextResult?.setText(it)
         }
 
-        viewModel.equalsPressedFlag.observe(activity as LifecycleOwner) {
-            val editTextMathExpression = binding?.editTextMathExpression
-
-            val translationAnimation = ObjectAnimator.ofFloat(editTextMathExpression, "translationY", 300f, 0f)
-
-            val px = editTextMathExpression?.textSize
-            val sp = (px ?: 1.0f) / resources.displayMetrics.scaledDensity
-            val scaleAnimation = ObjectAnimator.ofFloat(editTextMathExpression, "textSize", 20f, sp)
-
-            val animSet = AnimatorSet()
-            animSet.play(translationAnimation).with(scaleAnimation)
-            animSet.duration = 200L
-            animSet.interpolator = AccelerateInterpolator()
-            animSet.start()
-        }
-
         binding?.backspaceButton?.setOnClickListener {
             viewModel.removeLastSymbol()
         }
+
+        binding?.editTextMathExpression?.showSoftInputOnFocus = false
     }
 }

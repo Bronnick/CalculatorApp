@@ -62,6 +62,7 @@ class CalculatorViewModel @Inject constructor(
     }
 
     fun switchMathExpressionWithResult() {
+        if(_result.value?.isEmpty() == true) return
         _mathExpression.value = _result.value
         _result.value = ""
         _equalsPressedFlag.value = !_equalsPressedFlag.value!!

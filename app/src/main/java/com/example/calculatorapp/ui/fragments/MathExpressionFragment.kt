@@ -13,6 +13,7 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.navigation.fragment.findNavController
 import com.example.calculatorapp.R
 import com.example.calculatorapp.databinding.TextPanelBinding
+import com.example.calculatorapp.utils.getTextResizeAnimation
 import com.example.calculatorapp.view_models.CalculatorViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -39,54 +40,33 @@ class MathExpressionFragment : Fragment(R.layout.text_panel) {
             val editTextMathExpression = binding?.editTextMathExpression
 
             val translationAnimation = ObjectAnimator.ofFloat(editTextMathExpression, "translationY", 300f, 0f)
-            /* translationAnimation.duration = 200L
-             translationAnimation.interpolator = AccelerateInterpolator()
-             translationAnimation.start()*/
 
             val px = editTextMathExpression?.textSize
             val sp = (px ?: 1.0f) / resources.displayMetrics.scaledDensity
-            val scaleAnimation = ObjectAnimator.ofFloat(editTextMathExpression, "textSize", 20f, sp)
-            /*scaleAnimation.duration = 200L
-            scaleAnimation.interpolator = AccelerateInterpolator()
-            scaleAnimation.start()*/
+            val textResizeAnimation = getTextResizeAnimation(editTextMathExpression,
+                try { editTextMathExpression?.text?.toString()?.length!! } catch(e:Exception) {0}, sp)
 
             val animSet = AnimatorSet()
-            animSet.play(translationAnimation).with(scaleAnimation)
+            animSet.play(translationAnimation).with(textResizeAnimation)
             animSet.duration = 200L
             animSet.interpolator = AccelerateInterpolator()
             animSet.start()
         }
 
-        //val backspaceButton = binding?.
         viewModel.mathExpression.observe(activity as LifecycleOwner) {
             val editTextMathExpression = binding?.editTextMathExpression
 
             val length = it.length
-            val mathExpressionPreviousLength = viewModel.mathExpressionPreviousLength
+
             editTextMathExpression?.setText(it)
 
             viewModel.evaluateExpression(it)
 
-            val animation = when {
-                mathExpressionPreviousLength == 13 && length == 14 ->
-                    ObjectAnimator.ofFloat(editTextMathExpression, "textSize", 50f, 30f)
-                mathExpressionPreviousLength == 20 && length == 21 ->
-                    ObjectAnimator.ofFloat(editTextMathExpression, "textSize", 30f, 20f)
-                mathExpressionPreviousLength == 25 && length == mathExpressionPreviousLength + 1 ->
-                    ObjectAnimator.ofFloat(editTextMathExpression, "textSize", 20f, 15f)
-                mathExpressionPreviousLength == 21 && length == mathExpressionPreviousLength - 1 ->
-                    ObjectAnimator.ofFloat(editTextMathExpression, "textSize", 20f, 30f)
-                mathExpressionPreviousLength == 26 && length == mathExpressionPreviousLength - 1 ->
-                    ObjectAnimator.ofFloat(editTextMathExpression, "textSize", 15f, 20f)
-                mathExpressionPreviousLength == 14 && length == mathExpressionPreviousLength - 1 ->
-                    ObjectAnimator.ofFloat(editTextMathExpression, "textSize", 30f, 50f)
-                length == 0 ->
-                    ObjectAnimator.ofFloat(editTextMathExpression, "textSize", 30f, 50f)
-                else -> {
-                    viewModel.updateMathExpressionPreviousLength()
-                    return@observe
-                }
-            }
+            val px = editTextMathExpression?.textSize
+            val sp = (px ?: 1.0f) / resources.displayMetrics.scaledDensity
+
+            val animation = getTextResizeAnimation(editTextMathExpression, length, sp)
+
             animation.duration = 100L
             animation.interpolator = AccelerateInterpolator()
             animation.start()

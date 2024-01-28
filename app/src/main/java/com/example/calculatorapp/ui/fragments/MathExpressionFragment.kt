@@ -58,7 +58,6 @@ class MathExpressionFragment : Fragment(R.layout.text_panel) {
 
         viewModel.mathExpression.observe(activity as LifecycleOwner) {
             val editTextMathExpression = binding?.editTextMathExpression
-            val editTextResult = binding?.editTextResult
 
             val length = it.length
 

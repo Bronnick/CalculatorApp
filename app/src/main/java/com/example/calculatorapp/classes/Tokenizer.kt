@@ -1,13 +1,11 @@
 package com.example.calculatorapp.classes
 
 class Tokenizer(val input: String) {
-    // for storing the position of the current character
+
     var pos = 0
 
-    // for storing the current token
     var token: String? = null
 
-    //Advancing to the next token in the input(tokens are like integers,operators,parenthesis etc)
     fun nextToken() {
 
         while (pos < input.length && input[pos].isWhitespace()) {
@@ -19,7 +17,6 @@ class Tokenizer(val input: String) {
             return
         }
 
-        // if the current character is a digit or a decimal point, then we parse a number
         if (input[pos].isDigit() || input[pos] == '.') {
 
             val sb = StringBuilder()
@@ -52,7 +49,6 @@ fun evaluate(expression: String): Double {
     return parseExpression(tokenizer)
 }
 
-// function to parse the expression and carry out addition and subtraction operations
 fun parseExpression(tokenizer: Tokenizer): Double {
 
     var result = parseTerm(tokenizer)
@@ -75,7 +71,6 @@ fun parseExpression(tokenizer: Tokenizer): Double {
     return result
 }
 
-// function to parse the term and carry out multiplication and division operations
 fun parseTerm(tokenizer: Tokenizer): Double {
 
     var result = parseFactor(tokenizer)
@@ -95,7 +90,6 @@ fun parseTerm(tokenizer: Tokenizer): Double {
 
 }
 
-// To get the value of the factor and carry out unary operations and also to handle parenthesis
 fun parseFactor(tokenizer: Tokenizer): Double {
 
     if (tokenizer.token == null) {

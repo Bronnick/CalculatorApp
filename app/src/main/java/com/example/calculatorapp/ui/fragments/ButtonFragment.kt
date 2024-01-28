@@ -1,21 +1,11 @@
 package com.example.calculatorapp.ui.fragments
 
-import android.animation.AnimatorSet
-import android.animation.ArgbEvaluator
-import android.animation.ObjectAnimator
-import android.animation.ValueAnimator
-import android.content.Context
-import android.graphics.drawable.ColorDrawable
-import android.graphics.drawable.GradientDrawable
+
 import android.os.Bundle
-import android.os.VibrationEffect
-import android.os.Vibrator
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.AccelerateInterpolator
 import android.widget.Button
-import androidx.core.content.ContextCompat
 import androidx.core.view.children
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -29,8 +19,6 @@ class ButtonFragment : Fragment(R.layout.button_panel){
     private var binding: ButtonPanelBinding? = null
 
     private val viewModel: CalculatorViewModel by activityViewModels()
-
-    private var animSet: AnimatorSet? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,

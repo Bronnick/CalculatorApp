@@ -17,7 +17,6 @@ class HistoryAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HistoryViewHolder {
-        Log.d("myLogs", "view holder created")
         return HistoryViewHolder(
             HistoryItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         )
@@ -31,7 +30,6 @@ class HistoryAdapter(
         holder.itemView.setOnClickListener {
             onItemClick(holder.result.text.toString().drop(1))
         }
-        Log.d("myLogs", "onBindViewHolder: ${holder.mathExpression.text}")
     }
 }
 

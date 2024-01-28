@@ -14,6 +14,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.calculatorapp.R
 import com.example.calculatorapp.databinding.TextPanelBinding
 import com.example.calculatorapp.utils.getTextResizeAnimation
+import com.example.calculatorapp.utils.vibrate
 import com.example.calculatorapp.view_models.CalculatorViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -84,6 +85,7 @@ class MathExpressionFragment : Fragment(R.layout.text_panel) {
 
         binding?.backspaceButton?.setOnClickListener {
             viewModel.removeLastSymbol()
+            vibrate(requireActivity())
         }
 
         binding?.historyButton?.setOnClickListener {
@@ -92,6 +94,7 @@ class MathExpressionFragment : Fragment(R.layout.text_panel) {
             } else {
                 findNavController().popBackStack()
             }
+            vibrate(requireActivity())
         }
 
         binding?.editTextMathExpression?.showSoftInputOnFocus = false

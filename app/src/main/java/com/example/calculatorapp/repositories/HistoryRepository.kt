@@ -15,4 +15,8 @@ class HistoryRepository @Inject constructor(
     suspend fun insertHistoryItem(item: HistoryItem) {
         historyDao.insertHistoryItem(item)
     }
+
+    suspend fun clearHistory() {
+        historyDao.deleteAll()
+    }
 }

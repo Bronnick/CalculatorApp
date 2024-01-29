@@ -40,6 +40,11 @@ class HistoryFragment : Fragment(R.layout.history_fragment) {
 
     private fun initView() {
         binding?.rvHistory?.adapter = adapter
+
+        binding?.buttonClearHistory?.setOnClickListener {
+            viewModel.clearHistory()
+            findNavController().popBackStack()
+        }
     }
 
     private fun collectUiState() {

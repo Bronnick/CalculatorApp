@@ -20,4 +20,5 @@
     <string name="button_0">0</string>
     <string name="button_coma">.</string>
     <string name="button_equals">=</string>
+    <string name="button_clear_history">Clear logs</string>
 </resources>

@@ -65,6 +65,12 @@ class CalculatorViewModel @Inject constructor(
         }
     }
 
+    fun clearHistory() {
+        viewModelScope.launch {
+            historyRepository.clearHistory()
+        }
+    }
+
     fun switchMathExpressionWithResult() {
         if(_result.value?.isEmpty() == true) return
         _mathExpression.value = _result.value

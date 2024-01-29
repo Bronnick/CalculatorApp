@@ -10,6 +10,7 @@ import android.view.animation.AccelerateInterpolator
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.calculatorapp.R
 import com.example.calculatorapp.databinding.TextPanelBinding
@@ -17,6 +18,8 @@ import com.example.calculatorapp.utils.getTextResizeAnimation
 import com.example.calculatorapp.utils.vibrate
 import com.example.calculatorapp.view_models.CalculatorViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 
 @AndroidEntryPoint
@@ -97,5 +100,16 @@ class MathExpressionFragment : Fragment(R.layout.text_panel) {
         }
 
         binding?.editTextMathExpression?.showSoftInputOnFocus = false
+
+        collectDatabaseState()
+    }
+
+    private fun collectDatabaseState() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.history.collectLatest { list ->
+                binding?.historyButton?.isEnabled = list.isNotEmpty()
+                binding?.historyButton?.alpha = if(list.isNotEmpty()) 1.0f else 0.2f
+            }
+        }
     }
 }

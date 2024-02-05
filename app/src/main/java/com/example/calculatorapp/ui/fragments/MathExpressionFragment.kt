@@ -107,9 +107,20 @@ class MathExpressionFragment : Fragment(R.layout.text_panel) {
     private fun collectDatabaseState() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.history.collectLatest { list ->
-                binding?.historyButton?.isEnabled = list.isNotEmpty()
-                binding?.historyButton?.alpha = if(list.isNotEmpty()) 1.0f else 0.2f
+                if(list.isNotEmpty()) {
+                    binding?.historyButton?.isEnabled = true
+                    binding?.historyButton?.alpha = 1.0f
+                } else {
+                    binding?.historyButton?.isEnabled = false
+                    binding?.historyButton?.alpha = 0.2f
+                }
             }
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+
+        binding = null
     }
 }

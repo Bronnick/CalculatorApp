@@ -48,7 +48,6 @@ class CalculatorViewModel @Inject constructor(
 
     fun updateMathExpression(s: String) {
         _mathExpression.value += s
-        Log.d("myLogs", "beforeSize: $mathExpressionPreviousLength")
     }
 
     fun removeLastSymbol() {
@@ -61,7 +60,9 @@ class CalculatorViewModel @Inject constructor(
 
     fun saveHistoryItem(item: HistoryItem) {
         viewModelScope.launch {
-            historyRepository.insertHistoryItem(item)
+            if(item.result.isNotEmpty() && item.mathExpression.isNotEmpty()) {
+                historyRepository.insertHistoryItem(item)
+            }
         }
     }
 
